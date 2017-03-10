@@ -6,9 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ApplicationConfig {
 
-    private @Value("${dev}")
-    boolean dev;
-
+    private @Value("${dev}") boolean dev;
 
     public boolean isDev() {
         return dev;

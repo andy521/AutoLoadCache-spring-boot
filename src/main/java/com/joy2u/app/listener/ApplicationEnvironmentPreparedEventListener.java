@@ -11,26 +11,23 @@ import org.springframework.core.env.MutablePropertySources;
 import org.springframework.core.env.PropertySource;
 
 /**
- * spring boot 配置环境事件监听
- * ApplicationEnvironmentPreparedEvent：spring boot 对应Enviroment已经准备完毕，但此时上下文context还没有创建。
+ * spring boot 配置环境事件监听 ApplicationEnvironmentPreparedEvent：spring boot 对应Enviroment已经准备完毕，但此时上下文context还没有创建。
  * @author jiayu.qiu
- *
  */
 public class ApplicationEnvironmentPreparedEventListener implements ApplicationListener<ApplicationEnvironmentPreparedEvent> {
 
-    private Logger logger = LoggerFactory.getLogger(ApplicationEnvironmentPreparedEventListener.class);
+    private Logger logger=LoggerFactory.getLogger(ApplicationEnvironmentPreparedEventListener.class);
 
     @Override
     public void onApplicationEvent(ApplicationEnvironmentPreparedEvent event) {
 
-        ConfigurableEnvironment envi = event.getEnvironment();
-        MutablePropertySources mps = envi.getPropertySources();
-        if (mps != null) {
-            Iterator<PropertySource<?>> iter = mps.iterator();
-            while (iter.hasNext()) {
-                PropertySource<?> ps = iter.next();
-                logger
-                    .info("ps.getName:{};ps.getSource:{};ps.getClass:{}", ps.getName(), ps.getSource(), ps.getClass());
+        ConfigurableEnvironment envi=event.getEnvironment();
+        MutablePropertySources mps=envi.getPropertySources();
+        if(mps != null) {
+            Iterator<PropertySource<?>> iter=mps.iterator();
+            while(iter.hasNext()) {
+                PropertySource<?> ps=iter.next();
+                logger.info("ps.getName:{};ps.getSource:{};ps.getClass:{}", ps.getName(), ps.getSource(), ps.getClass());
             }
         }
     }

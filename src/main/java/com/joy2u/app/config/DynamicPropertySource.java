@@ -23,6 +23,7 @@ public class DynamicPropertySource extends MapPropertySource {
     private static Logger log=LoggerFactory.getLogger(DynamicPropertySource.class);
 
     private static ScheduledExecutorService scheduled=Executors.newScheduledThreadPool(1);
+
     static {
         scheduled.scheduleAtFixedRate(new Runnable() {
 
