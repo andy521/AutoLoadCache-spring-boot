@@ -1,7 +1,9 @@
 /target
-/.settings
+.settings
 .classpath
 .project
-/.idea
+.idea
 *.iml
 *.class
+memo.txt
+.springBeans

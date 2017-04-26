@@ -9,8 +9,8 @@ import com.jarvis.cache.aop.aspectj.AspectjAopInterceptor;
 import com.jarvis.cache.lock.JedisClusterLock;
 import com.jarvis.cache.redis.JedisClusterCacheManager;
 import com.jarvis.cache.script.AbstractScriptParser;
-import com.jarvis.cache.script.SpringELParser;
-import com.jarvis.cache.serializer.FastjsonSerializer;
+import com.jarvis.cache.script.OgnlParser;
+import com.jarvis.cache.serializer.HessianSerializer;
 import com.jarvis.cache.serializer.ISerializer;
 import com.jarvis.cache.to.AutoLoadConfig;
 
@@ -35,13 +35,13 @@ public class AutoLoadCacheConfig {
     }
 
     @Bean
-    public AbstractScriptParser scriptParser() {
-        return new SpringELParser();
+    public AbstractScriptParser scriptParser() {// 推荐使用：OGNL
+        return new OgnlParser();
     }
 
     @Bean
-    public ISerializer<Object> serializer() {
-        return new FastjsonSerializer();
+    public ISerializer<Object> serializer() {// 推荐使用：Hessian
+        return new HessianSerializer();
     }
 
     @Bean() // initMethod="start", destroyMethod="destroy"

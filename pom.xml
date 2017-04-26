@@ -42,9 +42,14 @@
       <version>${autoload-cache.version}</version>
     </dependency>
     <dependency>
-      <groupId>com.alibaba</groupId>
-      <artifactId>fastjson</artifactId>
-      <version>1.2.13</version>
+      <groupId>com.caucho</groupId>
+      <artifactId>hessian</artifactId>
+      <version>4.0.38</version>
+    </dependency>
+    <dependency>
+      <groupId>ognl</groupId>
+      <artifactId>ognl</artifactId>
+      <version>3.1.12</version>
     </dependency>
     <dependency>
       <groupId>org.aspectj</groupId>
@@ -58,6 +63,11 @@
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
     </dependency>
   </dependencies>
   <build>
