@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.jarvis.cache.AbstractCacheManager;
 import com.jarvis.cache.aop.aspectj.AspectjAopInterceptor;
+import com.jarvis.cache.lock.JedisClusterLock;
 import com.jarvis.cache.redis.JedisClusterCacheManager;
 import com.jarvis.cache.script.AbstractScriptParser;
 import com.jarvis.cache.script.SpringELParser;
@@ -47,7 +48,7 @@ public class AutoLoadCacheConfig {
     public AbstractCacheManager cacheManager() {
         AbstractCacheManager manager=new JedisClusterCacheManager(autoLoadConfig(), serializer(), scriptParser(), redisConfig.getJedisCluster());
         manager.setNamespace("test");
-
+        manager.setLock(new JedisClusterLock(redisConfig.getJedisCluster()));// 开启分布式锁
         return manager;
     }
 
