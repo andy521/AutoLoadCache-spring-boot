@@ -26,7 +26,7 @@ public class AutoLoadCacheDeleteAspect {
     /**
      * 如果@Cache不是用在接口中，可以按下面方法来配置
      */
-    @Pointcut("execution(* com.joy2u.app.dao..*.*(..)) && @annotation(cacheDelete)")
+    @Pointcut("execution(* com.jarvis.app..*.*(..)) && @annotation(cacheDelete)")
     public void cacheDeleteAspect(CacheDelete cacheDelete) {
     }
 

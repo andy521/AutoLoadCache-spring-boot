@@ -24,7 +24,7 @@ public class AutoLoadCacheAspect {
     /**
      * 如果@Cache不是用在接口中，可以按下面方法来配置
      */
-    @Pointcut("execution(public !void com.joy2u.app.dao..*.*(..)) && @annotation(cache)")
+    @Pointcut("execution(public !void com.jarvis.app.dao..*.*(..)) && @annotation(cache)")
     public void aspect(Cache cache) {
     }
 
