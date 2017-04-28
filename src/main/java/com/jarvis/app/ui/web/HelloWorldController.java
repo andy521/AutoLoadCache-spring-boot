@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jarvis.app.config.ApplicationConfig;
 import com.jarvis.app.config.DynamicConfig;
-import com.jarvis.app.dao.UserDAO;
+import com.jarvis.app.service.UserService;
 import com.jarvis.app.to.UserTO;
 
 @RestController
@@ -23,7 +23,7 @@ public class HelloWorldController {
     private DynamicConfig dynamicConfig;
 
     @Autowired
-    private UserDAO userDAO;
+    private UserService userService;
 
     @RequestMapping(value="/{name}", method=RequestMethod.GET)
     @ResponseBody
@@ -32,13 +32,13 @@ public class HelloWorldController {
         System.out.println("dynamicConfig=" + dynamicConfig.getProValueFromEnviroment("dynamic-info"));
         UserTO user;
         try {
-            user=userDAO.getUserById2(100);
+            user=userService.getUserById2(100);
             System.out.println(user);
         } catch(Exception e) {
             e.printStackTrace();
         }
 
-        userDAO.clearUserById2Cache(100);
+        userService.deleteUser();
         return "Hello " + name;
     }
 }

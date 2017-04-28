@@ -72,7 +72,7 @@ public class UserDAO {
     @Cache(expire=expire, autoload=false, key="'user_dao_getUserById2'+#args[0]", condition="#args[0]>0")
     public UserTO getUserById2(Integer id) throws Exception {
         Thread thread=Thread.currentThread();
-        System.out.println("thread:" + thread.getName() + ";getUserById2");
+        System.out.println("DAO thread:" + thread.getName() + ";getUserById2");
         try {
             // 模拟阻塞
             Thread.sleep(100);
