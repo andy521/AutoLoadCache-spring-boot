@@ -10,6 +10,7 @@ import com.jarvis.app.to.UserTO;
 import com.jarvis.cache.annotation.Cache;
 import com.jarvis.cache.annotation.CacheDelete;
 import com.jarvis.cache.annotation.CacheDeleteKey;
+import com.jarvis.cache.annotation.LocalCache;
 import com.jarvis.cache.type.CacheOpType;
 
 @Component
@@ -69,6 +70,7 @@ public class UserDAO {
      * @param id
      * @return
      */
+    @LocalCache(expire=30)
     @Cache(expire=expire, autoload=false, key="'user_dao_getUserById2'+#args[0]", condition="#args[0]>0")
     public UserTO getUserById2(Integer id) throws Exception {
         Thread thread=Thread.currentThread();

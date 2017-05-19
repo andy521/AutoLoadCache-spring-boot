@@ -13,6 +13,10 @@ import org.springframework.stereotype.Component;
 import com.jarvis.cache.annotation.CacheDelete;
 import com.jarvis.cache.aop.aspectj.AspectjAopInterceptor;
 
+/**
+ * 扫描@CacheDelete注解
+ * @author jiayu.qiu
+ */
 @Aspect
 @Component
 @Order(1000)

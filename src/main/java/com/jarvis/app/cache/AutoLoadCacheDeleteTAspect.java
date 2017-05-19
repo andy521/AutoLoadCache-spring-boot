@@ -12,6 +12,10 @@ import org.springframework.stereotype.Component;
 import com.jarvis.cache.annotation.CacheDeleteTransactional;
 import com.jarvis.cache.aop.aspectj.AspectjAopInterceptor;
 
+/**
+ * 扫描@CacheDeleteTransactional注解
+ * @author jiayu.qiu
+ */
 @Aspect
 @Component
 public class AutoLoadCacheDeleteTAspect {
