@@ -38,7 +38,7 @@ public class HelloWorldController {
             e.printStackTrace();
         }
 
-        userService.deleteUser();
+        //userService.deleteUser();
         return "Hello " + name;
     }
 }

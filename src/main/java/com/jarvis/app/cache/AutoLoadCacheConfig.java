@@ -13,8 +13,8 @@ import com.jarvis.cache.map.MapCacheManager;
 import com.jarvis.cache.redis.JedisClusterCacheManager;
 import com.jarvis.cache.script.AbstractScriptParser;
 import com.jarvis.cache.script.OgnlParser;
-import com.jarvis.cache.serializer.HessianSerializer;
 import com.jarvis.cache.serializer.ISerializer;
+import com.jarvis.cache.serializer.JacksonJsonSerializer;
 import com.jarvis.cache.to.AutoLoadConfig;
 
 @Configuration
@@ -45,7 +45,8 @@ public class AutoLoadCacheConfig {
 
     @Bean
     public ISerializer<Object> serializer() {// 推荐使用：Hessian
-        return new HessianSerializer();
+        //return new HessianSerializer();
+        return new JacksonJsonSerializer();
     }
 
     @Bean(initMethod="start", destroyMethod="destroy")
@@ -62,7 +63,7 @@ public class AutoLoadCacheConfig {
 
     @Bean
     public ICacheManager remoteCacheManager() {
-        JedisClusterCacheManager manager=new JedisClusterCacheManager(autoLoadConfig(), serializer());
+        JedisClusterCacheManager manager=new JedisClusterCacheManager(serializer());
         manager.setJedisCluster(redisConfig.getJedisCluster());
         // 根据需要自行配置
         // manager.setHashExpire(hashExpire);
@@ -77,7 +78,7 @@ public class AutoLoadCacheConfig {
 
     @Bean(destroyMethod="destroy")
     public CacheHandler cacheHandler() {
-        CacheHandler cacheHandler=new CacheHandler(comboCacheManager(), scriptParser());
+        CacheHandler cacheHandler=new CacheHandler(remoteCacheManager(), scriptParser(), autoLoadConfig(), serializer());
         cacheHandler.setLock(new JedisClusterLock(redisConfig.getJedisCluster()));// 开启分布式锁
         return cacheHandler;
     }
